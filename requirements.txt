@@ -1,0 +1,9 @@
+langchain
+langgraph
+openai
+tiktoken
+pandas
+faiss-cpu
+datasets
+streamlit
+langchain-community
