@@ -7,4 +7,3 @@ faiss-cpu
 datasets
 streamlit
 langchain-community
-try.py
