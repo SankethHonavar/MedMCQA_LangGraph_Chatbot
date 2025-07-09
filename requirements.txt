@@ -2,6 +2,7 @@ langchain
 langchain-community
 langgraph
 openai
+langchain-google-genai
 tiktoken
 pandas
 faiss-cpu
