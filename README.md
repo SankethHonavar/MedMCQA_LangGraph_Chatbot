@@ -20,7 +20,7 @@ https://medmcapplanggraphchatbot-v7xvxen5njjmtonccse4g7.streamlit.app/
 - ✅ Query strictly answers from **MedMCQA dataset**
 - ❌ No hallucinations — responds **only when confident**
 - 💬 Uses **LangGraph** for flow control
-- 🧠 Powered by **Google Gemini** via `langchain-google-genai`
+- 🧠 Powered by **Google Gemini 1.5 Flash** via `langchain-google-genai`
 - 🔍 Efficient similarity search with **FAISS** + **HuggingFace embeddings**
 - 🧾 Built with an intuitive **Streamlit UI**
 
@@ -95,7 +95,7 @@ If a question is not in the dataset, you'll get:
 ## 🧪 Dataset
 
 We use the [MedMCQA](https://huggingface.co/datasets/medmcqa) dataset from HuggingFace.
-It's a large-scale, multiple-choice QA dataset curated from medical entrance exams like NEET-PG.
+It's a large-scale, multiple-choice QA dataset curated from medical entrance exams like NEET-PG. It contains over 194,000 questions covering pharmacology, pathology, microbiology, and more.
 
 ---
 
