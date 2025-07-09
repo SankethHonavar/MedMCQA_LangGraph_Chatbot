@@ -120,12 +120,3 @@ It's a large-scale, multiple-choice QA dataset curated from medical entrance exa
 If you found this helpful, consider starring 🌟 the repo to support more work like this!
 
 ```
-
----
-
-Would you like me to:
-- Generate this file and add it to your repo as `README.md`?
-- Help record a quick 1-min screen demo video?
-
-Let me know!
-```
