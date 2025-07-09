@@ -1,6 +1,7 @@
 import streamlit as st
 from retriever import load_vector_store
 from langgraph_graph import generate_answer
+from time import sleep
 
 # Load vector DB
 db = load_vector_store()
@@ -81,13 +82,32 @@ if query:
     with st.spinner("🧠 Generating answer..."):
         response = generate_answer(query, context)
 
-    st.markdown("### 🔎 Top Matches:")
-    for i, doc in enumerate(results, 1):
-        st.markdown(f"**Result {i}:**\n\n{doc.page_content}")
+    st.markdown("""
+    <style>
+    .fade-in {
+        animation: fadeIn 0.7s ease-in;
+    }
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
-    st.markdown("---")
-    st.markdown("### 🧠 Answer:")
-    st.success(response)
+    st.markdown("<div class='fade-in'><h4>🧠 Answer:</h4></div>", unsafe_allow_html=True)
+    answer_placeholder = st.empty()
+    final_text = ""
+    for char in response:
+        final_text += char
+        answer_placeholder.markdown(f"<div class='fade-in'>{final_text}</div>", unsafe_allow_html=True)
+        sleep(0.01)
+
+    with st.expander("🔎 Top Matches"):
+        for i, doc in enumerate(results, 1):
+            content = doc.page_content
+            if query.lower() in content.lower():
+                content = content.replace(query, f"**{query}**")
+            st.markdown(f"**Result {i}:**\n\n{content}")
 
 # 📬 Sidebar Contact
 with st.sidebar:
@@ -97,10 +117,10 @@ with st.sidebar:
     st.markdown("[🔗 LinkedIn](https://linkedin.com/in/sankethhonavar)")
     st.markdown("[💻 GitHub](https://github.com/sankethhonavar)")
 
-# ✨ Floating Icons (Right side - Updated)
+# ✨ Floating Icons (Right side - Top aligned)
 st.markdown("""
 <style>
-.floating-icons {
+.floating-button {
     position: fixed;
     top: 80px;
     right: 20px;
@@ -109,30 +129,51 @@ st.markdown("""
     gap: 12px;
     z-index: 9999;
 }
-.floating-icons a {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.floating-button a {
     background-color: #0077b5;
     color: white;
+    padding: 10px 14px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 20px;
     text-decoration: none;
-    font-size: 22px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;
 }
-.floating-icons a.email {
-    background-color: #d44638;
+.floating-button a:hover {
+    background-color: #005983;
 }
-.floating-icons a.github {
+.floating-button a.email {
+    background-color: #444444;
+}
+.floating-button a.email:hover {
+    background-color: #222222;
+}
+.floating-button a.github {
+    background-color: #171515;
+}
+.floating-button a.github:hover {
     background-color: #000000;
 }
 </style>
 
-<div class="floating-icons">
-    <a href="mailto:sankethhonavar25@gmail.com" class="email" title="Email">📩</a>
-    <a href="https://linkedin.com/in/sankethhonavar" title="LinkedIn">💼</a>
-    <a href="https://github.com/sankethhonavar" class="github" title="GitHub">🐙</a>
+<div class="floating-button">
+    <a href="mailto:sankethhonavar25@gmail.com" class="email" title="Email Me">
+        <img src="https://img.icons8.com/ios-filled/25/ffffff/new-post.png" alt="Email"/>
+    </a>
+    <a href="https://linkedin.com/in/sankethhonavar" target="_blank" title="LinkedIn">
+        <img src="https://img.icons8.com/ios-filled/25/ffffff/linkedin.png" alt="LinkedIn"/>
+    </a>
+    <a href="https://github.com/SankethHonavar" target="_blank" class="github" title="GitHub">
+        <img src="https://img.icons8.com/ios-filled/25/ffffff/github.png" alt="GitHub"/>
+    </a>
 </div>
+""", unsafe_allow_html=True)
+
+# 📄 Footer
+st.markdown("""
+---
+<p style='text-align: center; font-size: 0.9rem; color: grey'>
+Made with ❤️ by <a href='https://linkedin.com/in/sankethhonavar' target='_blank'>Sanketh Honavar</a>
+</p>
 """, unsafe_allow_html=True)
