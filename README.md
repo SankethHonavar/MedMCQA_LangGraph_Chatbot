@@ -9,7 +9,7 @@ It only answers **factually** using dataset evidence, and **gracefully declines*
 ![Google Gemini](https://img.shields.io/badge/LLM-Google%20Gemini-red?style=for-the-badge)
 
 ---
-## 🔗[Live Demo] (https://medmcapplanggraphchatbot-v7xvxen5njjmtonccse4g7.streamlit.app/)
+## 🔗[Live Demo](https://medmcapplanggraphchatbot-v7xvxen5njjmtonccse4g7.streamlit.app/)
 ---
 
 ## 🚀 Features
