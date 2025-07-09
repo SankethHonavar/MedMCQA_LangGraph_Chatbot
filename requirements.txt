@@ -1,4 +1,5 @@
 langchain
+langchain-community
 langgraph
 openai
 tiktoken
@@ -6,4 +7,6 @@ pandas
 faiss-cpu
 datasets
 streamlit
-langchain-community
+huggingface-hub
+transformers
+sentence-transformers
